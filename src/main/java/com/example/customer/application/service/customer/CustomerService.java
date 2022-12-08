@@ -14,8 +14,8 @@ public class CustomerService implements GetCustomerUseCase {
     private final GetCustomer getCustomer;
 
     @Override
-    public List<Customer> getCustomer(){
-       return getCustomer.getAllCustomer();
+    public List<Customer> getCustomer() {
+        return getCustomer.getAllCustomer();
     }
 
     @Override

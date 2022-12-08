@@ -21,8 +21,8 @@ public class UpdateCustomerService implements UpdateCustomerUseCase {
 
     @Override
     @Transactional
-    public UpdateCustomerCommandResult update(UpdateCustomerComand comand){
-        Customer customer = getCustomer.getByIdAndCustomerId(comand.getId(),comand.getCustomerId());
+    public UpdateCustomerCommandResult update(UpdateCustomerComand comand) {
+        Customer customer = getCustomer.getByIdAndCustomerId(comand.getId(), comand.getCustomerId());
         customer.setCustomerName(comand.getCustomerName());
         customer.setPhoneNumber(comand.getPhoneNumber());
         customer.setEmailAddress(comand.getEmailAddress());

@@ -1,6 +1,5 @@
 package com.example.customer.application.port.out;
 
-import com.example.customer.adapter.out.CustomerJpaEntity;
 import com.example.customer.domain.Customer;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +11,7 @@ public interface GetCustomer {
 
     Customer getCustomerById(long id);
 
-    Customer getByIdAndCustomerId(long id,long customerId);
+    Customer getByIdAndCustomerId(long id, long customerId);
 
     Customer getCustomerByCustomerId(long customerId);
 
