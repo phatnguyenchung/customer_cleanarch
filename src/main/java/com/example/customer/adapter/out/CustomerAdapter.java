@@ -30,6 +30,14 @@ public class CustomerAdapter implements GetCustomer {
     }
 
     @Override
+    public Customer getCustomerById(long id) {
+            return jpaCustomerRepository
+                    .findById(id)
+                    .map(CustomerMapper::mapToDomainEntity)
+                    .orElseThrow(CustomerNotFoundException::new);
+    }
+
+    @Override
     public Customer getByIdAndCustomerId(long id, long customerId) {
         return jpaCustomerRepository
                 .findByCustomerIdAndId(id,customerId)

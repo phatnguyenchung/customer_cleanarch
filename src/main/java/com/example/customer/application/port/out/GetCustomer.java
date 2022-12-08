@@ -10,6 +10,8 @@ import java.util.List;
 public interface GetCustomer {
     List<Customer> getAllCustomer();
 
+    Customer getCustomerById(long id);
+
     Customer getByIdAndCustomerId(long id,long customerId);
 
     boolean existsByIdOrLegalIdOrPassportOrPhoneNumber(Long id, String legalId, String passport, String phoneNumber);

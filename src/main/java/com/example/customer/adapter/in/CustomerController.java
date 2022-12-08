@@ -24,5 +24,8 @@ public class CustomerController {
         return new ResponseEntity<Object>(getCustomerUseCase.getCustomer(),HttpStatus.OK);
     }
 
-
+    @GetMapping("/getcustomerbyid")
+    public ResponseEntity<Object> searchbyid(@RequestParam long id) {
+        return new ResponseEntity<Object>(getCustomerUseCase.getCustomerById(id),HttpStatus.OK);
+    }
 }

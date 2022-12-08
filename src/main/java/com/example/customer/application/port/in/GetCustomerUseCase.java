@@ -10,4 +10,5 @@ public interface GetCustomerUseCase {
 
     List<Customer> getCustomer();
 
+    Customer getCustomerById(long id);
 }
