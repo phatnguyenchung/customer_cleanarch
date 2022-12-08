@@ -1,0 +1,24 @@
+
+CREATE DATABASE customer_management;
+
+USE customer_management;
+
+CREATE TABLE tblCustomer(
+ CustomerId bigint(10) primary key identity,
+ Id bigint(10),
+ CustomerName varchar(100),
+ PhoneNumber varchar(11),
+ EmailAddress varchar(100),
+ BDay date,
+ PlaceOfBirth varchar(200),
+ LegalId varchar(20),
+ DocType varchar(50),
+ DocIssueDate date,
+ DocIssuePlace varchar(35)
+ DocExpiredDate date,
+ Gender char(1),
+ Passport varchar(35),
+ PassportIssueDate date,
+ PassportIssuePlace varchar(255),
+ PassportExpiredDate date,
+);
