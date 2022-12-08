@@ -1,8 +1,6 @@
 package com.example.customer.adapter.in;
 
 import com.example.customer.application.port.in.CreateCustomerCommand;
-import com.example.customer.application.port.in.CustomerCommand;
-import com.example.customer.domain.Customer;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,9 +1,6 @@
 package com.example.customer.adapter.out;
 
 import com.example.customer.domain.Customer;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.Mapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 public class CustomerMapper {
 

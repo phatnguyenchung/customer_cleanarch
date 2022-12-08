@@ -1,7 +1,5 @@
 package com.example.customer.adapter.in;
 
-import com.example.customer.application.port.in.CreateCustomerCommand;
-import com.example.customer.application.port.in.DeleteCustomerUseCase;
 import com.example.customer.application.port.in.UpdateCustomerComand;
 import com.example.customer.application.port.in.UpdateCustomerUseCase;
 import lombok.RequiredArgsConstructor;

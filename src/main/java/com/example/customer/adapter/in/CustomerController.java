@@ -1,6 +1,5 @@
 package com.example.customer.adapter.in;
 
-import com.example.customer.application.port.in.CustomerCommand;
 import com.example.customer.application.port.in.GetCustomerUseCase;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
