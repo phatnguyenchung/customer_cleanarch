@@ -20,6 +20,7 @@ public class CreateCustomerService implements CreateCustomerUseCase {
     @Override
     public CreateCustomerCommandResult create(CreateCustomerCommand command) {
         validator.validatorCustomer(command);
+
         return CreateCustomerCommandResult.builder()
                 .items(createCustomer.save(command.getItems()))
                 .build();
