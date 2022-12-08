@@ -3,6 +3,7 @@ package com.example.customer.adapter.out;
 import com.example.customer.application.port.out.GetCustomer;
 import com.example.customer.domain.Customer;
 import com.example.customer.exception.CustomerNotFoundException;
+import com.example.customer.exception.CustomerUserIdNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +49,19 @@ public class CustomerAdapter implements GetCustomer {
                 .findByCustomerIdAndId(id,customerId)
                 .map(CustomerMapper::mapToDomainEntity)
                 .orElseThrow(CustomerNotFoundException::new);
+    }
+
+    @Override
+    public Customer getCustomerByCustomerId(long customerId) {
+        try {
+            return jpaCustomerRepository
+                    .findByCustomerId(customerId)
+                    .map(CustomerMapper::mapToDomainEntity)
+                    .orElseThrow(CustomerNotFoundException::new);
+        }
+        catch (Exception e){
+            throw new RuntimeException(new CustomerUserIdNotFoundException(customerId));
+        }
     }
 
     @Override

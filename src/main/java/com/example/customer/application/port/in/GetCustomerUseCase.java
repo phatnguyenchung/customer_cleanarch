@@ -11,4 +11,6 @@ public interface GetCustomerUseCase {
     List<Customer> getCustomer();
 
     Customer getCustomerById(long id);
+
+    Customer getCustomerByUserId(long customerId);
 }

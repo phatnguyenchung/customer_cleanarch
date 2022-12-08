@@ -28,4 +28,9 @@ public class CustomerController {
     public ResponseEntity<Object> searchbyid(@RequestParam long id) {
         return new ResponseEntity<Object>(getCustomerUseCase.getCustomerById(id),HttpStatus.OK);
     }
+
+    @GetMapping("/getcustomerbyuserid")
+    public ResponseEntity<Object> searchbyuserid(@RequestParam long customerId) {
+        return new ResponseEntity<Object>(getCustomerUseCase.getCustomerByUserId(customerId),HttpStatus.OK);
+    }
 }

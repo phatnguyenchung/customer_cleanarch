@@ -5,6 +5,7 @@ public class CustomerNotFoundException extends RuntimeException{
         super("Could not find customer:" + id);
     }
 
+
     public CustomerNotFoundException(){
         super("No data");
     }

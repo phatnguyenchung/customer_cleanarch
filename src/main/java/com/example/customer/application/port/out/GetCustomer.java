@@ -14,5 +14,7 @@ public interface GetCustomer {
 
     Customer getByIdAndCustomerId(long id,long customerId);
 
+    Customer getCustomerByCustomerId(long customerId);
+
     boolean existsByIdOrLegalIdOrPassportOrPhoneNumber(Long id, String legalId, String passport, String phoneNumber);
 }

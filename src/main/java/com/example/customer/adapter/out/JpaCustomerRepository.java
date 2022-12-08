@@ -12,5 +12,7 @@ public interface JpaCustomerRepository extends JpaRepository<CustomerJpaEntity, 
 
     Optional<CustomerJpaEntity> findByCustomerIdAndId(Long id, Long customerId);
 
+    Optional<CustomerJpaEntity> findByCustomerId(Long customerId);
+
     Boolean existsByIdOrLegalIdOrPassportOrPhoneNumber(Long id, String legalId, String passport, String phoneNumber);
 }
