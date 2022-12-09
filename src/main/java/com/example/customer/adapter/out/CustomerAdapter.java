@@ -22,7 +22,9 @@ public class CustomerAdapter implements GetCustomer {
             for(CustomerJpaEntity entity : lst) {
                 System.out.println(entity.getCustomerId());
             }
-            return jpaCustomerRepository.findAll().stream().map(CustomerMapper::mapToDomainEntity).collect(Collectors.toList());
+            return jpaCustomerRepository.findAll().stream()
+                    .map(CustomerMapper::mapToDomainEntity)
+                    .collect(Collectors.toList());
         }catch(Exception e)
         {
             throw new RuntimeException(new CustomerNotFoundException());
@@ -64,7 +66,8 @@ public class CustomerAdapter implements GetCustomer {
     }
 
     @Override
-    public boolean existsByIdOrLegalIdOrPassportOrPhoneNumber(Long id, String legalId, String passport, String phoneNumber) {
+    public boolean existsByIdOrLegalIdOrPassportOrPhoneNumber(Long id, String legalId, String passport, String phoneNumber)
+    {
         return jpaCustomerRepository.existsByIdOrLegalIdOrPassportOrPhoneNumber(id,legalId,passport,phoneNumber);
     }
 
