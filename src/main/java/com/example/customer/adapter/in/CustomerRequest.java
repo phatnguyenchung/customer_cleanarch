@@ -59,7 +59,7 @@ public class CustomerRequest {
                                 .placeOfBirth(item.placeOfBirth)
                                 .build())
                         .collect(Collectors.toList()))
-                .customerId(items.get(0).customerId)
+                .Id(items.get(0).id)
                 .build();
     }
 }

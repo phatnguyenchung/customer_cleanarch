@@ -12,7 +12,7 @@ public class DeleteCustomerAdapter implements DeleteCustomer {
     private final JpaCustomerRepository repository;
 
     @Override
-    public void delete(Long id) {
-        repository.deleteById(id);
+    public void delete(Long customerId) {
+        repository.deleteById(customerId);
     }
 }

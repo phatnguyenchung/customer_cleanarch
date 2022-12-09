@@ -15,9 +15,9 @@ public class DeleteCustomerService implements DeleteCustomerUseCase {
     private final DeleteCustomer deleteCustomer;
 
     @Override
-    public DeleteCustomerCommandResult delete(Long id) {
+    public DeleteCustomerCommandResult delete(Long customerId) {
         try {
-            deleteCustomer.delete(id);
+            deleteCustomer.delete(customerId);
             return null;
         } catch (Exception e) {
             throw new RuntimeException(new CustomerDeleteException());

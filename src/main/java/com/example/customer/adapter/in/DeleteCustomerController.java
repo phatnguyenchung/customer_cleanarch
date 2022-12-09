@@ -18,7 +18,7 @@ public class DeleteCustomerController {
     private DeleteCustomerUseCase deleteCustomerUseCase;
 
     @PostMapping("/delete")
-    public ResponseEntity<Object> delete(@RequestParam Long id) {
-        return new ResponseEntity<Object>(deleteCustomerUseCase.delete(id), HttpStatus.OK);
+    public ResponseEntity<Object> delete(@RequestParam Long customerId) {
+        return new ResponseEntity<Object>(deleteCustomerUseCase.delete(customerId), HttpStatus.OK);
     }
 }

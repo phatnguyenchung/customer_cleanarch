@@ -18,8 +18,9 @@ public class CreateCustomerValidator {
     private GetCustomer getCustomer;
 
     public void validatorCustomer(CreateCustomerCommand command) {
-        boolean exist = getCustomer.existsByIdOrLegalIdOrPassportOrPhoneNumber(command.getCustomerId(),
-                command.getLegalId(), command.getPassport(), command.getPhoneNumber());
+        boolean exist = getCustomer.existsByIdOrLegalIdOrPassportOrPhoneNumber(command.getItems().get(0).getId(),
+                command.getItems().get(0).getLegalId(), command.getItems().get(0).getPassport(),
+                command.getItems().get(0).getPhoneNumber());
         if (exist) {
             log.error("exist customer");
             throw new CustomerExistException();
