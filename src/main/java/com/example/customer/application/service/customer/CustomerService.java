@@ -28,5 +28,10 @@ public class CustomerService implements GetCustomerUseCase {
         return getCustomer.getCustomerByCustomerId(customerId);
     }
 
+    @Override
+    public Customer getCustomerByName(String customerName) {
+        return getCustomer.getCustomerByName(customerName);
+    }
+
 
 }

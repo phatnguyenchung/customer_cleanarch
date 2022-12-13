@@ -18,4 +18,6 @@ public class CreateCustomerCommand {
     private Date bDay;
     
     private String phoneNumber;
+
+    private String passport;
 }

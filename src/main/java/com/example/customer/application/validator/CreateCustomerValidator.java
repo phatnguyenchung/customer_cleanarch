@@ -6,9 +6,15 @@ import com.example.customer.application.port.out.GetCustomer;
 import com.example.customer.domain.Customer;
 import com.example.customer.exception.CustomerExistException;
 import com.example.customer.exception.CustomerNotFoundException;
+import com.example.customer.exception.CustomerPassportExistException;
+import com.example.customer.exception.CustomerPhoneNumberExistException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Slf4j
 @Component
@@ -17,13 +23,39 @@ public class CreateCustomerValidator {
 
     private GetCustomer getCustomer;
 
-    public void validatorCustomer(CreateCustomerCommand command) {
-        boolean exist = getCustomer.existsByIdOrLegalIdOrPassportOrPhoneNumber(command.getItems().get(0).getId(),
-                command.getItems().get(0).getLegalId(), command.getItems().get(0).getPassport(),
-                command.getItems().get(0).getPhoneNumber());
-        if (exist) {
-            log.error("exist customer");
+
+    public void validatorCustomer(Customer command) {
+        boolean existById = false;
+        if(Objects.nonNull((command.getId()))){
+            existById = getCustomer.existById(command.getId());
+        }
+        boolean existByLegalId = false;
+        if(Objects.nonNull(command.getLegalId())  && !command.getLegalId().isEmpty()) {
+            existByLegalId= getCustomer.existsByLegalId(command.getLegalId());
+        }
+        boolean existByPhoneNumber = false;
+        if(Objects.nonNull(command.getPhoneNumber()) && !command.getPhoneNumber().isEmpty()){
+            existByPhoneNumber = getCustomer.existsByPhoneNumber(command.getPhoneNumber());
+        }
+        boolean existByPassport = false;
+        if(Objects.nonNull(command.getPassport()) && !command.getPassport().isEmpty()){
+            existByPassport = getCustomer.existsByPassport(command.getPassport());
+        }
+        if(existById) {
+            log.error("exist id customer");
             throw new CustomerExistException();
+        }
+        if(existByLegalId){
+            log.error("exist legal id customer");
+            throw  new CustomerPhoneNumberExistException();
+        }
+        if(existByPhoneNumber){
+            log.error("exist phone number customer");
+            throw  new CustomerPhoneNumberExistException();
+        }
+        if(existByPassport){
+            log.error("exist passport customer");
+            throw new CustomerPassportExistException();
         }
     }
 }

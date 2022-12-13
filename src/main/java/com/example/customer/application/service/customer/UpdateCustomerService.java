@@ -22,7 +22,7 @@ public class UpdateCustomerService implements UpdateCustomerUseCase {
     @Override
     @Transactional
     public UpdateCustomerCommandResult update(UpdateCustomerComand comand) {
-        Customer customer = getCustomer.getByIdAndCustomerId(comand.getId(), comand.getCustomerId());
+        Customer customer = getCustomer.getCustomerById(comand.getId());
         customer.setCustomerName(comand.getCustomerName());
         customer.setPhoneNumber(comand.getPhoneNumber());
         customer.setEmailAddress(comand.getEmailAddress());
@@ -38,7 +38,7 @@ public class UpdateCustomerService implements UpdateCustomerUseCase {
         customer.setPassportIssueDate(comand.getPassportIssueDate());
         customer.setPassportIssuePlace(comand.getPassportIssuePlace());
         customer.setPassportExpiredDate(comand.getPassportExpiredDate());
-        updateCustomer.update(comand.getCustomerId(), comand.getId(), comand);
+        updateCustomer.update(customer);
         return null;
     }
 }

@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 public interface CreateCustomer {
 
-    List<Customer> save(List<Customer> customers);
+    Customer save(Customer customers);
 }

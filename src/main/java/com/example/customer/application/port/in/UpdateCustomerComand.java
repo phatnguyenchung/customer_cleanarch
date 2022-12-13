@@ -13,6 +13,7 @@ import java.util.Date;
 @EqualsAndHashCode
 public class UpdateCustomerComand {
 
+
     private Long Id;
 
     private Long customerId;

@@ -11,5 +11,13 @@ public interface JpaCustomerRepository extends JpaRepository<CustomerJpaEntity, 
 
     Optional<CustomerJpaEntity> findByCustomerId(Long customerId);
 
+    Optional<CustomerJpaEntity> findByCustomerName(String customerName);
+
     Boolean existsByIdOrLegalIdOrPassportOrPhoneNumber(Long id, String legalId, String passport, String phoneNumber);
+
+    Boolean existsByLegalId(String legalId);
+
+    Boolean existsByPassport(String passport);
+
+    Boolean existsByPhoneNumber(String phoneNumber);
 }

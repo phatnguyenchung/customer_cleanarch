@@ -2,6 +2,7 @@ package com.example.customer.adapter.out;
 
 import com.example.customer.application.port.out.GetCustomer;
 import com.example.customer.domain.Customer;
+import com.example.customer.exception.CustomerNameNotFoundException;
 import com.example.customer.exception.CustomerNotFoundException;
 import com.example.customer.exception.CustomerUserIdNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,10 +67,41 @@ public class CustomerAdapter implements GetCustomer {
     }
 
     @Override
+    public Customer getCustomerByName(String customerName) {
+        try {
+            return jpaCustomerRepository
+                    .findByCustomerName(customerName)
+                    .map(CustomerMapper::mapToDomainEntity)
+                    .orElseThrow(CustomerNotFoundException::new);
+        }catch (Exception e){
+            throw new RuntimeException(new CustomerNameNotFoundException(customerName));
+        }
+    }
+
+    @Override
     public boolean existsByIdOrLegalIdOrPassportOrPhoneNumber(Long id, String legalId, String passport, String phoneNumber)
     {
         return jpaCustomerRepository.existsByIdOrLegalIdOrPassportOrPhoneNumber(id,legalId,passport,phoneNumber);
     }
 
+    @Override
+    public boolean existById(Long id) {
+        return jpaCustomerRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsByLegalId(String legalId) {
+        return jpaCustomerRepository.existsByLegalId(legalId);
+    }
+
+    @Override
+    public boolean existsByPassport(String passport) {
+        return jpaCustomerRepository.existsByPassport(passport);
+    }
+
+    @Override
+    public boolean existsByPhoneNumber(String phoneNumber) {
+        return jpaCustomerRepository.existsByPhoneNumber(phoneNumber);
+    }
 
 }

@@ -1,5 +1,9 @@
 package com.example.customer.application.port.in;
 
+import com.example.customer.domain.Customer;
+
+import java.util.List;
+
 public interface CreateCustomerUseCase {
-    CreateCustomerCommandResult create(CreateCustomerCommand command);
+    List<Customer> create(CreateCustomerCommand command);
 }

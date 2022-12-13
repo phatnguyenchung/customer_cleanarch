@@ -11,4 +11,6 @@ public interface GetCustomerUseCase {
     Customer getCustomerById(long id);
 
     Customer getCustomerByUserId(long customerId);
+
+    Customer getCustomerByName(String customerName);
 }

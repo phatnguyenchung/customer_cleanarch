@@ -14,11 +14,8 @@ public class CreateCustomerApdapter implements CreateCustomer {
     private final JpaCustomerRepository repository;
 
     @Override
-    public List<Customer> save(List<Customer> customers) {
-        List<CustomerJpaEntity> entities =
-                customers.stream().map(CustomerMapper::mapToJpaEntity).collect(Collectors.toList());
-        return repository.saveAll(entities).stream()
-                .map(CustomerMapper::mapToDomainEntity)
-                .collect(Collectors.toList());
+    public Customer save(Customer customers) {
+
+        return CustomerMapper.mapToDomainEntity(repository.save(CustomerMapper.mapToJpaEntity(customers)));
     }
 }

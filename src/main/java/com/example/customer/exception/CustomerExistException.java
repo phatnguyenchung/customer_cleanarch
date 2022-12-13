@@ -4,4 +4,5 @@ public class CustomerExistException extends RuntimeException {
     public CustomerExistException() {
         super("Customer existed in database");
     }
+
 }

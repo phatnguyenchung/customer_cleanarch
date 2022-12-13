@@ -32,4 +32,9 @@ public class CustomerController {
     public ResponseEntity<Object> searchbyuserid(@RequestParam long customerId) {
         return new ResponseEntity<Object>(getCustomerUseCase.getCustomerByUserId(customerId),HttpStatus.OK);
     }
+
+    @GetMapping("/getcustomerbyname")
+    public ResponseEntity<Object> searchbycustomername(@RequestParam String customerName){
+        return new ResponseEntity<Object>(getCustomerUseCase.getCustomerByName(customerName),HttpStatus.OK);
+    }
 }
