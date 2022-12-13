@@ -14,8 +14,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = "/customer", produces = APPLICATION_JSON_VALUE)
 public class DeleteCustomerController {
 
-    @Autowired
-    private DeleteCustomerUseCase deleteCustomerUseCase;
+    //@Autowired
+    private final DeleteCustomerUseCase deleteCustomerUseCase;
 
     @PostMapping("/delete")
     public ResponseEntity<Object> delete(@RequestParam Long customerId) {

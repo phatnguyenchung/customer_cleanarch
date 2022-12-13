@@ -18,11 +18,12 @@ import java.util.List;
 @Service
 public class CreateCustomerService implements CreateCustomerUseCase {
 
-    private final CreateCustomer createCustomer;
+    private CreateCustomer createCustomer;
     private final CreateCustomerValidator validator;
 
     @Override
     public List<Customer> create(CreateCustomerCommand command) {
+
         List<Customer> lstCustomer = command.getItems();
         List<Customer> rs = new ArrayList<>();
         for(Customer item : lstCustomer) {

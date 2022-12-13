@@ -29,6 +29,14 @@ public class CreateCustomerValidator {
         if(Objects.nonNull((command.getId()))){
             existById = getCustomer.existById(command.getId());
         }
+        if(existById) {
+            log.error("exist id customer");
+            throw new CustomerExistException();
+        }
+
+
+
+
         boolean existByLegalId = false;
         if(Objects.nonNull(command.getLegalId())  && !command.getLegalId().isEmpty()) {
             existByLegalId= getCustomer.existsByLegalId(command.getLegalId());
@@ -40,10 +48,6 @@ public class CreateCustomerValidator {
         boolean existByPassport = false;
         if(Objects.nonNull(command.getPassport()) && !command.getPassport().isEmpty()){
             existByPassport = getCustomer.existsByPassport(command.getPassport());
-        }
-        if(existById) {
-            log.error("exist id customer");
-            throw new CustomerExistException();
         }
         if(existByLegalId){
             log.error("exist legal id customer");

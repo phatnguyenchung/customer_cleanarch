@@ -18,13 +18,13 @@ public class CustomerController {
     }
 
 
-    @GetMapping("/getcustomer")
+    @GetMapping("/getCustomer")
     public ResponseEntity<Object> search(@RequestBody CustomerRequest customerRequest) {
         return new ResponseEntity<Object>(getCustomerUseCase.getCustomer(),HttpStatus.OK);
     }
 
     @GetMapping("/getcustomerbyid")
-    public ResponseEntity<Object> searchbyid(@RequestParam long id) {
+    public ResponseEntity<Object> searchById(@RequestParam long id) {
         return new ResponseEntity<Object>(getCustomerUseCase.getCustomerById(id),HttpStatus.OK);
     }
 

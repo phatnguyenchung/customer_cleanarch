@@ -19,10 +19,7 @@ public class CustomerAdapter implements GetCustomer {
     @Override
     public List<Customer> getAllCustomer() {
         try{
-            List<CustomerJpaEntity> lst = jpaCustomerRepository.findAll();
-            for(CustomerJpaEntity entity : lst) {
-                System.out.println(entity.getCustomerId());
-            }
+
             return jpaCustomerRepository.findAll().stream()
                     .map(CustomerMapper::mapToDomainEntity)
                     .collect(Collectors.toList());
