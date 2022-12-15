@@ -18,7 +18,7 @@ public class DeleteCustomerService implements DeleteCustomerUseCase {
     public DeleteCustomerCommandResult delete(Long customerId) {
         try {
             deleteCustomer.delete(customerId);
-            return null;
+            return DeleteCustomerCommandResult.builder().status(true).build();
         } catch (Exception e) {
             throw new RuntimeException(new CustomerDeleteException());
         }

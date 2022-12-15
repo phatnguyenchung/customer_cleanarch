@@ -1,4 +1,4 @@
-package com.example.customer;
+package com.example.customer.application.service;
 
 import com.example.customer.application.port.in.UpdateCustomerComand;
 import com.example.customer.application.port.in.UpdateCustomerCommandResult;

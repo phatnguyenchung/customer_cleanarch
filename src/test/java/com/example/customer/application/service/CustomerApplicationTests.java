@@ -1,4 +1,4 @@
-package com.example.customer;
+package com.example.customer.application.service;
 
 import com.example.customer.adapter.out.JpaCustomerRepository;
 import com.example.customer.application.port.in.CreateCustomerCommand;
