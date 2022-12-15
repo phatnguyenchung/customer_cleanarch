@@ -19,7 +19,6 @@ public class CustomerAdapter implements GetCustomer {
     @Override
     public List<Customer> getAllCustomer() {
         try{
-
             return jpaCustomerRepository.findAll().stream()
                     .map(CustomerMapper::mapToDomainEntity)
                     .collect(Collectors.toList());

@@ -39,22 +39,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class CustomerApplicationTests {
-
 	@InjectMocks
 	private CreateCustomerService service;
-
 	@Mock
 	private CreateCustomer createCustomer;
-
-
-
 	@Captor
 	private ArgumentCaptor<Customer> customerCaptor;
-
 	@Mock
 	private CreateCustomerValidator validator;
-
-
 
 	@Test
 	public void testCreateCustonmer () {

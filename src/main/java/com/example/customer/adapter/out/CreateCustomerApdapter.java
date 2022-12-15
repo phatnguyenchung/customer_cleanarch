@@ -15,7 +15,6 @@ public class CreateCustomerApdapter implements CreateCustomer {
 
     @Override
     public Customer save(Customer customers) {
-
         return CustomerMapper.mapToDomainEntity(repository.save(CustomerMapper.mapToJpaEntity(customers)));
     }
 }
