@@ -34,9 +34,6 @@ public class CreateCustomerValidator {
             throw new CustomerExistException();
         }
 
-
-
-
         boolean existByLegalId = false;
         if(Objects.nonNull(command.getLegalId())  && !command.getLegalId().isEmpty()) {
             existByLegalId= getCustomer.existsByLegalId(command.getLegalId());

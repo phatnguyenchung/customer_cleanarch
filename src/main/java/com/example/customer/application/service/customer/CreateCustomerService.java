@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 public class CreateCustomerService implements CreateCustomerUseCase {
 
-    private CreateCustomer createCustomer;
+    private final CreateCustomer createCustomer;
     private final CreateCustomerValidator validator;
 
     @Override
