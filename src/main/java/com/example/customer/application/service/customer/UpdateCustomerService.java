@@ -39,6 +39,6 @@ public class UpdateCustomerService implements UpdateCustomerUseCase {
         customer.setPassportIssuePlace(comand.getPassportIssuePlace());
         customer.setPassportExpiredDate(comand.getPassportExpiredDate());
         updateCustomer.update(customer);
-        return null;
+        return UpdateCustomerCommandResult.builder().status(true).build();
     }
 }

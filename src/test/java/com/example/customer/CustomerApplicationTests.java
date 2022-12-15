@@ -2,17 +2,19 @@ package com.example.customer;
 
 import com.example.customer.adapter.out.JpaCustomerRepository;
 import com.example.customer.application.port.in.CreateCustomerCommand;
+import com.example.customer.application.port.in.UpdateCustomerComand;
+import com.example.customer.application.port.in.UpdateCustomerCommandResult;
 import com.example.customer.application.port.out.CreateCustomer;
+import com.example.customer.application.port.out.UpdateCustomer;
 import com.example.customer.application.service.customer.CreateCustomerService;
+import com.example.customer.application.service.customer.UpdateCustomerService;
 import com.example.customer.application.validator.CreateCustomerValidator;
 import com.example.customer.domain.Customer;
 import org.apache.commons.lang3.ArrayUtils;
-import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -23,6 +25,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.test.annotation.Rollback;
+import org.springframework.util.Assert;
 
 import javax.swing.plaf.ListUI;
 import java.text.ParseException;
@@ -42,8 +45,15 @@ class CustomerApplicationTests {
 
 	@Mock
 	private CreateCustomer createCustomer;
+
+
+
+	@Captor
+	private ArgumentCaptor<Customer> customerCaptor;
+
 	@Mock
 	private CreateCustomerValidator validator;
+
 
 
 	@Test
@@ -97,29 +107,28 @@ class CustomerApplicationTests {
 		Mockito.when(createCustomer.save(createCustomerCommand.getItems().get(0))).thenReturn(item);
 
 		List<Customer> customers = service.create(createCustomerCommand);
-
-		Assertions.assertThat(customers.size() == 1);
+		Mockito.verify(createCustomer).save(customerCaptor.capture());
+		Customer capturedValue = customerCaptor.getValue();
 
 		for (Customer customer : customers) {
-			assertAll(
-					() -> Assertions.assertThat(customer.getCustomerId()).isEqualTo(1L),
-					() -> Assertions.assertThat(customer.getId()).isEqualTo(1L),
-					() -> Assertions.assertThat(customer.getCustomerName()).isEqualTo("Alex"),
-					() -> Assertions.assertThat(customer.getPhoneNumber()).isEqualTo("09039039289"),
-					() -> Assertions.assertThat(customer.getEmailAddress()).isEqualTo("alex@cuibap.timo.vn"),
-					() -> Assertions.assertThat(customer.getBDay()).isEqualTo(currentDate),
-					() -> Assertions.assertThat(customer.getPlaceOfBirth()).isEqualTo("Nha Trang"),
-					() -> Assertions.assertThat(customer.getLegalId()).isEqualTo("2378782389"),
-					() -> Assertions.assertThat(customer.getDocType()).isEqualTo("CCCD"),
-					() -> Assertions.assertThat(customer.getDocIssuePlace()).isEqualTo("Ho Chi Minh"),
-					() -> Assertions.assertThat(customer.getDocIssueDate()).isEqualTo(currentDate),
-					() -> Assertions.assertThat(customer.getDocExpiredDate()).isEqualTo(currentDate),
-					() -> Assertions.assertThat(customer.getPassport()).isEqualTo(null),
-					() -> Assertions.assertThat(customer.getPassportIssueDate()).isEqualTo(currentDate),
-					() -> Assertions.assertThat(customer.getPassportIssuePlace()).isEqualTo(null),
-					() -> Assertions.assertThat(customer.getPassportExpiredDate()).isEqualTo(currentDate),
-					() -> Assertions.assertThat(customer.getGender()).isEqualTo("1")
-			);
+			Assertions.assertEquals(1,capturedValue.getCustomerId());
+			Assertions.assertEquals(1,capturedValue.getId());
+			Assertions.assertEquals("Alex",capturedValue.getCustomerName());
+			Assertions.assertEquals("09039039289",capturedValue.getPhoneNumber());
+			Assertions.assertEquals("alex@cuibap.timo.vn",capturedValue.getEmailAddress());
+			Assertions.assertEquals(currentDate,capturedValue.getBDay());
+			Assertions.assertEquals("Nha Trang",capturedValue.getPlaceOfBirth());
+			Assertions.assertEquals("2378782389",capturedValue.getLegalId());
+			Assertions.assertEquals("CCCD",capturedValue.getDocType());
+			Assertions.assertEquals(currentDate,capturedValue.getDocIssueDate());
+			Assertions.assertEquals(currentDate,capturedValue.getDocExpiredDate());
+			Assertions.assertEquals(null,capturedValue.getPassport());
+			Assertions.assertEquals(currentDate,capturedValue.getPassportIssueDate());
+			Assertions.assertEquals(null,capturedValue.getPassportIssuePlace());
+			Assertions.assertEquals(currentDate,capturedValue.getPassportExpiredDate());
+			Assertions.assertEquals("1",capturedValue.getGender());
 		}
 	}
+
+
 }
