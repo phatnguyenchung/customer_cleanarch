@@ -5,7 +5,6 @@ import com.example.customer.application.port.in.UpdateCustomerCommandResult;
 import com.example.customer.application.port.out.GetCustomer;
 import com.example.customer.application.port.out.UpdateCustomer;
 import com.example.customer.application.service.customer.UpdateCustomerService;
-import com.example.customer.application.validator.CreateCustomerValidator;
 import com.example.customer.domain.Customer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,13 +26,10 @@ public class UpdateCustomerTest {
     private ArgumentCaptor<Customer> customerCaptor;
 
     @Mock
-    private CreateCustomerValidator validator;
-
-    @Mock
     private GetCustomer getCustomer;
 
     @Test
-    public void testUpdateCustonmer () {
+    public void testUpdateCustonmer() {
         Date currentDate = new Date();
         UpdateCustomerComand updateCustomerComand = UpdateCustomerComand.builder()
                 .Id(1L)
@@ -88,21 +84,21 @@ public class UpdateCustomerTest {
         Assertions.assertEquals(true, result.isStatus());
         Mockito.verify(updateCustomer).update(customerCaptor.capture());
         Customer capturedValue = customerCaptor.getValue();
-        Assertions.assertEquals(1,capturedValue.getCustomerId());
-        Assertions.assertEquals(1,capturedValue.getId());
-        Assertions.assertEquals("Alex",capturedValue.getCustomerName());
-        Assertions.assertEquals("09039039289",capturedValue.getPhoneNumber());
-        Assertions.assertEquals("alex@cuibap.timo.vn",capturedValue.getEmailAddress());
-        Assertions.assertEquals(currentDate,capturedValue.getBDay());
-        Assertions.assertEquals("Nha Trang",capturedValue.getPlaceOfBirth());
-        Assertions.assertEquals("2378782389",capturedValue.getLegalId());
-        Assertions.assertEquals("CCCD",capturedValue.getDocType());
-        Assertions.assertEquals(currentDate,capturedValue.getDocIssueDate());
-        Assertions.assertEquals(currentDate,capturedValue.getDocExpiredDate());
-        Assertions.assertEquals("293829238",capturedValue.getPassport());
-        Assertions.assertEquals(currentDate,capturedValue.getPassportIssueDate());
-        Assertions.assertEquals("Ho Chi Minh",capturedValue.getPassportIssuePlace());
-        Assertions.assertEquals(currentDate,capturedValue.getPassportExpiredDate());
-        Assertions.assertEquals("1",capturedValue.getGender());
+        Assertions.assertEquals(1, capturedValue.getCustomerId());
+        Assertions.assertEquals(1, capturedValue.getId());
+        Assertions.assertEquals("Alex", capturedValue.getCustomerName());
+        Assertions.assertEquals("09039039289", capturedValue.getPhoneNumber());
+        Assertions.assertEquals("alex@cuibap.timo.vn", capturedValue.getEmailAddress());
+        Assertions.assertEquals(currentDate, capturedValue.getBDay());
+        Assertions.assertEquals("Nha Trang", capturedValue.getPlaceOfBirth());
+        Assertions.assertEquals("2378782389", capturedValue.getLegalId());
+        Assertions.assertEquals("CCCD", capturedValue.getDocType());
+        Assertions.assertEquals(currentDate, capturedValue.getDocIssueDate());
+        Assertions.assertEquals(currentDate, capturedValue.getDocExpiredDate());
+        Assertions.assertEquals("293829238", capturedValue.getPassport());
+        Assertions.assertEquals(currentDate, capturedValue.getPassportIssueDate());
+        Assertions.assertEquals("Ho Chi Minh", capturedValue.getPassportIssuePlace());
+        Assertions.assertEquals(currentDate, capturedValue.getPassportExpiredDate());
+        Assertions.assertEquals("1", capturedValue.getGender());
     }
 }

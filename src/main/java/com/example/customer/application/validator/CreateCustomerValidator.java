@@ -1,19 +1,11 @@
 package com.example.customer.application.validator;
 
-import com.example.customer.application.port.in.CreateCustomerCommand;
-import com.example.customer.application.port.in.CustomerCommand;
 import com.example.customer.application.port.out.GetCustomer;
 import com.example.customer.domain.Customer;
-import com.example.customer.exception.CustomerExistException;
-import com.example.customer.exception.CustomerNotFoundException;
-import com.example.customer.exception.CustomerPassportExistException;
-import com.example.customer.exception.CustomerPhoneNumberExistException;
+import com.example.customer.exception.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Slf4j
@@ -22,7 +14,6 @@ import java.util.Objects;
 public class CreateCustomerValidator {
 
     private GetCustomer getCustomer;
-
 
     public void validatorCustomer(Customer command) {
         boolean existById = false;
@@ -48,11 +39,11 @@ public class CreateCustomerValidator {
         }
         if(existByLegalId){
             log.error("exist legal id customer");
-            throw  new CustomerPhoneNumberExistException();
+            throw new CustomerLegalIdExistException();
         }
         if(existByPhoneNumber){
             log.error("exist phone number customer");
-            throw  new CustomerPhoneNumberExistException();
+            throw new CustomerPhoneNumberExistException();
         }
         if(existByPassport){
             log.error("exist passport customer");
