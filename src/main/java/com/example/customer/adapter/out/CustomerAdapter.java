@@ -16,14 +16,14 @@ public class CustomerAdapter implements GetCustomer {
 
     @Autowired
     private JpaCustomerRepository jpaCustomerRepository;
+
     @Override
     public List<Customer> getAllCustomer() {
-        try{
+        try {
             return jpaCustomerRepository.findAll().stream()
                     .map(CustomerMapper::mapToDomainEntity)
                     .collect(Collectors.toList());
-        }catch(Exception e)
-        {
+        } catch (Exception e) {
             throw new RuntimeException(new CustomerNotFoundException());
         }
     }
@@ -35,8 +35,7 @@ public class CustomerAdapter implements GetCustomer {
                     .findById(id)
                     .map(CustomerMapper::mapToDomainEntity)
                     .orElseThrow(CustomerNotFoundException::new);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(new CustomerNotFoundException(id));
         }
     }
@@ -44,7 +43,7 @@ public class CustomerAdapter implements GetCustomer {
     @Override
     public Customer getByIdAndCustomerId(long id, long customerId) {
         return jpaCustomerRepository
-                .findByCustomerIdAndId(id,customerId)
+                .findByCustomerIdAndId(id, customerId)
                 .map(CustomerMapper::mapToDomainEntity)
                 .orElseThrow(CustomerNotFoundException::new);
     }
@@ -56,8 +55,7 @@ public class CustomerAdapter implements GetCustomer {
                     .findByCustomerId(customerId)
                     .map(CustomerMapper::mapToDomainEntity)
                     .orElseThrow(CustomerNotFoundException::new);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(new CustomerUserIdNotFoundException(customerId));
         }
     }
@@ -69,15 +67,9 @@ public class CustomerAdapter implements GetCustomer {
                     .findByCustomerName(customerName)
                     .map(CustomerMapper::mapToDomainEntity)
                     .orElseThrow(CustomerNotFoundException::new);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(new CustomerNameNotFoundException(customerName));
         }
-    }
-
-    @Override
-    public boolean existsByIdOrLegalIdOrPassportOrPhoneNumber(Long id, String legalId, String passport, String phoneNumber)
-    {
-        return jpaCustomerRepository.existsByIdOrLegalIdOrPassportOrPhoneNumber(id,legalId,passport,phoneNumber);
     }
 
     @Override

@@ -16,8 +16,6 @@ public interface GetCustomer {
 
     Customer getCustomerByName(String customerName);
 
-    boolean existsByIdOrLegalIdOrPassportOrPhoneNumber(Long id, String legalId, String passport, String phoneNumber);
-
     boolean existById(Long id);
 
     boolean existsByLegalId(String legalId);
